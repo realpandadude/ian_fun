@@ -1,9 +1,9 @@
 class Noob
   def initialize
-    @exp = 110
-    @level = 2
-    @hp = 110
-    @attack = 11
+    @exp = 0
+    @level = 1
+    @hp = 100
+    @attack = 10
   end
 
   def summon_goblin
@@ -18,8 +18,29 @@ class Noob
     start_fight mob
   end
 
+  def summon_weakling
+    # when the noob summons a mob, it will start a fight to the death!!!
+    mob = Weakling.new
+    start_fight mob
+  end
+
+  def summon_dark_chick
+    # when the noob summons a mob, it will start a fight to the death!!!
+    mob = Dark_Chick.new
+    start_fight mob
+  end
+
+  def summon_elder_dragon
+    # when the noob summons a mob, it will start a fight to the death!!!
+    mob = Elder_Dragon.new
+    start_fight mob
+  end
+
   def level_to(level)
-    # TODO make a cheat way to level us up
+    @exp = level*100
+    while ding? do
+      level_up
+    end
   end
 
   def sg
@@ -103,6 +124,7 @@ class Mob
     @hp > 1
   end
 end
+#############################################################################
 
 class Goblin < Mob
 end
@@ -121,6 +143,34 @@ class Ninja < Mob
     @hp = 50
     @level = 2
     @attack = 12
+    @value_exp = 40
+  end
+end
+
+class Weakling < Mob
+  def initialize
+    @hp = 21
+    @level = 1
+    @attack = 1
+    @value_exp = 40
+  end
+end
+
+class Dark_Chick < Mob
+  def initialize
+    @hp = 40
+    @level = 3
+    @attack = 19
     @value_exp = 50
+  end
+end
+
+
+class Elder_Dragon < Mob
+  def initialize
+    @hp = 1000
+    @level = 100
+    @attack = 200
+    @value_exp = 2000
   end
 end
