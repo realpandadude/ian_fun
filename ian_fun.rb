@@ -12,6 +12,12 @@ class Noob
     start_fight mob
   end
 
+  def summon_shadow
+    # when the noob summons a mob, it will start a fight to the death!!!
+    mob = Shadow.new
+    start_fight mob
+  end
+
   def summon_ninja
     # when the noob summons a mob, it will start a fight to the death!!!
     mob = Ninja.new
@@ -57,6 +63,10 @@ class Noob
     puts "The #{mob.class} dies in a pool of blood and guts!" unless mob.alive?
   end
 
+  def die
+    puts "YOU ARE DEAD!!!"
+  end
+
   def attack(opponent)
     damage = 0
     if rand(10) < (2+@level)
@@ -71,7 +81,9 @@ class Noob
 
   def award_exp(award)
     @exp += award
-    level_up if ding?
+    while ding?
+      level_up
+    end
   end
 
   def ding?
@@ -152,7 +164,7 @@ class Weakling < Mob
     @hp = 21
     @level = 1
     @attack = 1
-    @value_exp = 40
+    @value_exp = 35
   end
 end
 
@@ -161,10 +173,18 @@ class Dark_Chick < Mob
     @hp = 40
     @level = 3
     @attack = 19
-    @value_exp = 50
+    @value_exp = 40
   end
 end
 
+class Shadow < Mob
+  def initialize
+    @hp = 199
+    @level = 5
+    @attack = 12
+    @value_exp = 43
+  end
+end
 
 class Elder_Dragon < Mob
   def initialize
