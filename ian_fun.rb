@@ -69,17 +69,20 @@ class Noob
 
   def attack(opponent)
     damage = 0
-    if rand(10) < (2+@level)
+    if rand(10) < (2+(@level-opponent.level))
       puts "You MASSACRE the #{opponent.class}"
       damage = @attack
     else
       puts "#{opponent.class} dodges your attack!"
     end
     opponent.take_damage(damage)
-    award_exp(opponent.value_exp) unless opponent.alive?
+    award_exp(opponent) unless opponent.alive?
   end
 
-  def award_exp(award)
+  def award_exp(opponent)
+    award = opponent.value_exp - ((@level - opponent.level) * 10)
+    award = (award > 0) ? award : 0
+    puts "You receive #{award} exp!"
     @exp += award
     while ding?
       level_up
@@ -115,7 +118,7 @@ class Mob
     @attack = 6
     @value_exp = 30
   end
-  attr_reader :value_exp, :hp
+  attr_reader :value_exp, :hp, :level, :level_exp
 
   def attack(opponent)
     damage = 0
@@ -179,7 +182,7 @@ end
 
 class Shadow < Mob
   def initialize
-    @hp = 199
+    @hp = 119
     @level = 5
     @attack = 12
     @value_exp = 43
