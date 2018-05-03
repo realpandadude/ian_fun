@@ -6,6 +6,7 @@ class Noob
     @attack = 10
     @inventory = []
     @max_inventory = 5
+    @wield = Spear.new
   end
 
   def summon_goblin
@@ -72,8 +73,8 @@ class Noob
   def attack(opponent)
     damage = 0
     if rand(10) < (2+(@level-opponent.level))
-      puts "You MASSACRE the #{opponent.class}"
-      damage = @attack
+      puts "Your #{@wield.damage_type} mauls the #{opponent.class}"
+      damage = @attack + @wield.damage
     else
       puts "#{opponent.class} dodges your attack!"
     end

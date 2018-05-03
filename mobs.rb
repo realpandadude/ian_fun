@@ -16,6 +16,7 @@ class Ninja < Mob
     @level = 2
     @attack = 12
     @value_exp = 40
+    @wield = Katana.new
   end
 end
 
