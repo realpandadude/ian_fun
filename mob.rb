@@ -6,7 +6,7 @@ class Mob
     @value_exp = 30
     @wield = Claw.new
   end
-  attr_reader :value_exp, :hp, :level, :level_exp
+  attr_reader :value_exp, :hp, :level, :level_exp, :wield
 
   def attack(opponent)
     damage = 0
@@ -24,7 +24,7 @@ class Mob
   end
 
   def alive?
-    @hp > 1
+    @hp > 0
   end
 end
 #############################################################################

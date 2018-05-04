@@ -15,6 +15,12 @@ class Noob
     start_fight mob
   end
 
+  def summon_poop
+    mob = Poop.new
+    start_fight mob
+  end
+
+
   def summon_shadow
     # when the noob summons a mob, it will start a fight to the death!!!
     mob = Shadow.new
@@ -72,7 +78,7 @@ class Noob
 
   def attack(opponent)
     damage = 0
-    if rand(10) < (2+(@level-opponent.level))
+    if rand(10) < 2 + (@level / 5)
       puts "Your #{@wield.damage_type} mauls the #{opponent.class}"
       damage = @attack + @wield.damage
     else
@@ -109,6 +115,6 @@ class Noob
   end
 
   def alive?
-    @hp > 1
+    @hp > 0
   end
 end
