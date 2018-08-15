@@ -50,3 +50,12 @@ class Claw < Weapon
     @damage_type = 'scratch'
   end
 end
+
+
+class CheatyWeapon < Weapon
+  def initialize
+    @value = 200
+    @damage = 20
+    @damage_type = 'cheaty attack'
+  end
+end

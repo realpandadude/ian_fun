@@ -9,6 +9,11 @@ class Noob
     @wield = Spear.new
   end
 
+  def wield(weapon)
+    throw "I can only wield weapons!" unless weapon.class == Weapon || weapon.class.superclass == Weapon
+    @wield = weapon
+  end
+
   def summon_goblin
     # when the noob summons a mob, it will start a fight to the death!!!
     mob = Goblin.new
